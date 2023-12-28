@@ -1,0 +1,12 @@
+<%layout("../layouts/boilerplate.ejs")-%>
+
+
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div style="color: black;">
+        <p><%=err.message%></p>
+        </div>
+    </div>
+    <form action="/listings" method="GET">
+        <button class="btn btn-primary">Go back to listings</button>
+    </form>

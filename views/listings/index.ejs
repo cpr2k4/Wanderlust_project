@@ -1,0 +1,98 @@
+<%layout('../layouts/boilerplate.ejs')-%>
+<style>
+    .filter{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .containerBox{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0.5rem;
+        margin-top:0.5rem;
+        margin-right: 2rem;
+        opacity: 0.7;
+        cursor: pointer;
+    }
+    .containerBox:hover{
+        color:black;
+        opacity: 1;
+    }
+    .tax{
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    .taxShow{
+        color: black;
+        font-weight: 500 !important;
+        display: none;
+    }
+</style>
+<body>
+    <div class="filter">
+        <div class="containerBox">
+            <i class="fa-solid fa-fire"></i>
+            <p>Trending</p>
+        </div>
+        <div class="containerBox">
+            <i class="fa-solid fa-umbrella-beach"></i>
+            <p>BeachFront</p>
+        </div>
+        <div class="containerBox">
+            <i class="fa-solid fa-mountain-city"></i>
+            <p>Hill Station</p>
+        </div>
+        <div class="containerBox">
+            <i class="fa-solid fa-city"></i>
+            <p>Cities</p>
+        </div>
+        <div class="containerBox">
+            <i class="fa-brands fa-fort-awesome"></i>
+            <p>Castles</p>
+        </div>
+        <div class="tax">
+            <div class="form-check-reverse form-switch ms-auto">
+                <input id="taxSwitch" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault">Show total after taxes</label>
+            </div>
+        </div>
+    </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 row-cols-1">
+    <%for(let list of lists){%>
+        <a href="/listings/<%=list.id%>" class="listing-img" style="margin-left:2rem !important;">
+            <div class="card col listing-card" style="width: 18rem;">
+                <img src="<%=list.image.url%>" class="card-img-top" alt="hotel_image">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <div class="card-text-title"><%=list.title%></div>
+                        <div class="mt-2" style="font-size:0.9rem !important;">
+                            <span> &#8377; <%=list.price%>/ night</span>
+                            <span class="ms-3 taxShow">+ 18% GST</span>
+                        </div>
+                    </p>
+                </div>
+            </div>
+    </a>
+    <%}%>
+    </div>
+</body>
+
+<script>
+    let taxSwitch = document.querySelector('#taxSwitch');
+    let taxSpans = document.querySelectorAll('.taxShow');
+
+    taxSwitch.addEventListener('change',()=>{
+        for(tax of taxSpans){
+            if(taxSwitch.checked){
+                tax.style.display='inline';
+            }
+            else{
+                tax.style.display='none';
+            }
+        }
+    })
+</script>
