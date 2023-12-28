@@ -3,8 +3,12 @@ const router = express.Router();
 const passport = require('passport');
 const {savedRedirectUrl} = require("../middleware.js");
 const UserController = require('../Controller/users.js');
+const ListingController = require('../Controller/listing.js');
 
-
+//root page or home page
+router.route("/")
+    .get(ListingController.index);
+    
 //signup get and post
 router.route("/signup")
     .get(UserController.getSignupPage)    
